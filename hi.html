@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Code Generator</title>
+</head>
+<body>
+  <input type="text" id="randomCodeInput" onclick="copyToClipboard()">
+  <button onclick="generateRandomCode()">Generate Random Code</button>
+
+  <script>
+    function generateRandomCode() {
+      // Define characters that can be used in the random code
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+      // Define the length of the random code
+      const codeLength = 8;
+
+      let randomCode = '';
+
+      // Generate random characters to form the code
+      for (let i = 0; i < codeLength; i++) {
+        randomCode += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      // Set the generated random code as the value of the input element
+      document.getElementById('randomCodeInput').value = randomCode;
+    }
+
+    function copyToClipboard() {
+      // Select the text inside the input element
+      const input = document.getElementById('randomCodeInput');
+      input.select();
+
+      // Copy the selected text to the clipboard
+      document.execCommand("copy");
+
+      // Deselect the text (optional)
+      input.setSelectionRange(0, 0);
+
+      // Optionally, show a message to indicate that the text has been copied
+      alert("Copied to clipboard: " + input.value);
+    }
+  </script>
+</body>
+</html>
